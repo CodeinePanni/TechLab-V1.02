@@ -1037,51 +1037,56 @@
             popup.style.display = 'none';
         });
 
-        // Salva su GitHub
-        saveBtn.addEventListener('click', async () => {
-            const text = textInput.value.trim();
-            if (!text) {
-                alert('Per favore scrivi qualcosa!');
-                return;
-            }
+               // Salva su GitHub
+			saveBtn.addEventListener('click', async () => {
+			const text = textInput.value.trim();
+			if (!text) {
+				alert('Per favore scrivi qualcosa!');
+				return;
+			}
 
-            const filename = `note_${new Date().toISOString().replace(/[:.]/g, '-')}.txt`;
-            const repo = 'CodeinePanni/TechLab-V1.02'; // Sostituisci con i tuoi dati
-            const path = `repositoring/${filename}`;
-            const token = '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'; // Sostituisci con il tuo token
+			const filename = `note_${new Date().toISOString().replace(/[:.]/g, '-')}.txt`;
+			const repo = 'CodeinePanni/TechLab-V1.02'; // Usa solo questa dichiarazione
+			const path = `repositoring/${filename}`;
+			const token = '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';
 
-            try {
-                saveBtn.disabled = true;
-                saveBtn.textContent = 'Salvando...';
-                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
+			try {
+				saveBtn.disabled = true;
+				saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
 
-                const response = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        message: `Aggiunto nuovo file: ${filename}`,
-                        content: btoa(unescape(encodeURIComponent(text))),
-                    })
-                });
+				// Codifica il contenuto correttamente
+				const content = btoa(unescape(encodeURIComponent(text)));
+				
+				const response = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+					method: 'PUT',
+					headers: {
+						'Authorization': `token ${token}`,
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						message: `Aggiunto nuovo file: ${filename}`,
+						content: content,
+						branch: 'main' // Specifica il branch esplicitamente
+					})
+				});
 
-                if (response.ok) {
-                    alert('Testo salvato con successo su GitHub!');
-                    popup.style.display = 'none';
-                } else {
-                    throw new Error('Errore nel salvataggio');
-                }
-            } catch (error) {
-                console.error('Errore:', error);
-                alert('Si è verificato un errore durante il salvataggio.');
-            } finally {
-                saveBtn.disabled = false;
-                saveBtn.textContent = 'Salva su GitHub';
-                saveBtn.innerHTML = 'Salva su GitHub';
-            }
-        });
+				const data = await response.json();
+				
+				if (!response.ok) {
+					// Mostra l'errore specifico da GitHub
+					throw new Error(data.message || 'Errore nel salvataggio');
+				}
+
+				alert('La richiesta è stata correttamente inviata 😁 !');
+				popup.style.display = 'none';
+			} catch (error) {
+				console.error('Errore:', error);
+				alert(`Errore durante il salvataggio: ${error.message}`);
+			} finally {
+				saveBtn.disabled = false;
+				saveBtn.innerHTML = 'Salva su GitHub';
+			}
+		});
     </script>
 	
 	
