@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+
+
+	
+
+
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechLab - Accessori premium per la tua esperienza tecnologica">
+    <meta name="keywords" content="accessori tech, airpods, joypad xbox, action cam, cuffie gaming">
+    <title>TechLab | Accessori Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: url('hero-bg.jpg') center/cover no-repeat;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--dark);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-link {
+            display: inline-block;
+            color: var(--secondary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .feature-link:hover {
+            color: var(--accent);
+        }
+        
+        .feature-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        .testimonials {
+            background: var(--light);
+            padding: 4rem 0;
+        }
+        
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(52, 152, 219, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.5rem;
+            }
+        }
+        /* Stili per la sezione servizi */
+        #servizi {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+        }
+        .btn.feature-link {
+            background: linear-gradient(135deg, #3D7EFF, #2962FF);
+            color: white;
+            border: none;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn.feature-link:hover {
+            background: linear-gradient(135deg, #2962FF, #1A4FD8);
+            transform: translateY(-2px);
+        }
+        #servizi .section-title .subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .service-feature {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .service-details {
+            margin: 1rem 0;
+        }
+
+        .service-details p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #495057;
+        }
+
+        .service-details i {
+            color: #28a745;
+        }
+
+        .service-desc {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-badge {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Stili aggiuntivi per la pagina accessori */
+        .accessori-hero {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .accessori-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .accessori-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .premium-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .accessori-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .accessorio-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .accessorio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .accessorio-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .accessorio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .accessorio-card:hover .accessorio-img img {
+            transform: scale(1.1);
+        }
+        
+        .accessorio-content {
+            padding: 1.5rem;
+        }
+        
+        .accessorio-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .accessorio-content .prezzo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .accessorio-content .descrizione {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .specifiche {
+            margin-bottom: 1.5rem;
+        }
+        
+        .specifiche li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .specifiche i {
+            color: var(--secondary);
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Tech<span>Lab</span></div>
+        <p>Innovazione Tecnologica al tuo servizio</p>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+           
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                
+                <li><a href="#accessori" >Accessori Premium</a></li>
+                
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="accessori-hero">
+        <div class="container">
+            <span class="premium-badge">PREMIUM</span>
+            <h1>Accessori di Alta Gamma</h1>
+            <p>Scopri la nostra selezione di accessori premium che elevano la tua esperienza tecnologica a nuovi livelli di qualità e prestazioni.</p>
+            <a href="#accessori" class="btn">Esplora la collezione</a>
+        </div>
+    </section>
+    
+    <section id="accessori" class="container">
+        <div class="section-title">
+            <h2>Accessori Premium</h2>
+        </div>
+        
+        <div class="accessori-grid">
+            <!-- AirPods 2a Gen -->
+            <div class="accessorio-card">
+                <div class="accessorio-img">
+                    <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="AirPods 2a Generazione">
+                </div>
+                <div class="accessorio-content">
+                    <h3>AirPods 2a Generazione</h3>
+                    <div class="prezzo">€159,00</div>
+                    <p class="descrizione">Auricolari wireless con custodia di ricarica, chip H1 per connessione più rapida e fino a 5 ore di autonomia.</p>
+                    <ul class="specifiche">
+                        <li><i class="fas fa-check"></i> Connessione automatica</li>
+                        <li><i class="fas fa-check"></i> Attivazione vocale con "Ehi Siri"</li>
+                        <li><i class="fas fa-check"></i> Doppio tocco per controllo</li>
+                        <li><i class="fas fa-check"></i> 24h di autonomia con custodia</li>
+                    </ul>
+                    <a href="airpods-2gen.html" class="btn feature-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Joypad Xbox Elite 2 -->
+            <div class="accessorio-card">
+                <div class="accessorio-img">
+                    <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Joypad Xbox Elite 2">
+                </div>
+                <div class="accessorio-content">
+                    <h3>Joypad Xbox Elite 2</h3>
+                    <div class="prezzo">€179,99</div>
+                    <p class="descrizione">Il controller definitivo per i giocatori più esigenti, con pulsanti posteriori regolabili e levette intercambiabili.</p>
+                    <ul class="specifiche">
+                        <li><i class="fas fa-check"></i> 30+ combinazioni personalizzabili</li>
+                        <li><i class="fas fa-check"></i> Tasti posteriori rimappabili</li>
+                        <li><i class="fas fa-check"></i> Griglie di tensione regolabili</li>
+                        <li><i class="fas fa-check"></i> Fino a 40h di autonomia</li>
+                    </ul>
+                    <a href="xbox-elite-2.html" class="btn feature-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Insta360 GO 3S -->
+            <div class="accessorio-card">
+                <div class="accessorio-img">
+                    <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Insta360 GO 3S">
+                </div>
+                <div class="accessorio-content">
+                    <h3>Insta360 GO 3S</h3>
+                    <div class="prezzo">€399,00</div>
+                    <p class="descrizione">La mini action cam più versatile, con stabilizzazione FlowState, modalità hands-free e qualità 2.7K.</p>
+                    <ul class="specifiche">
+                        <li><i class="fas fa-check"></i> Pesa solo 35g</li>
+                        <li><i class="fas fa-check"></i> Resistente all'acqua fino a 5m</li>
+                        <li><i class="fas fa-check"></i> Modalità timelapse e hyperlapse</li>
+                        <li><i class="fas fa-check"></i> Ricarica wireless</li>
+                    </ul>
+                    <a href="insta360-go3s.html" class="btn feature-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Cuffie Arctis Nova Pro Wireless -->
+            <div class="accessorio-card">
+                <div class="accessorio-img">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Arctis Nova Pro Wireless">
+                </div>
+                <div class="accessorio-content">
+                    <h3>Arctis Nova Pro Wireless</h3>
+                    <div class="prezzo">€349,99</div>
+                    <p class="descrizione">Cuffie gaming premium con doppia batteria, audio Hi-Res e microfono retrattile con cancellazione del rumore.</p>
+                    <ul class="specifiche">
+                        <li><i class="fas fa-check"></i> Doppia connessione wireless/Bluetooth</li>
+                        <li><i class="fas fa-check"></i> Fino a 22h di autonomia</li>
+                        <li><i class="fas fa-check"></i> Base station con controllo audio</li>
+                        <li><i class="fas fa-check"></i> Cancellazione attiva del rumore</li>
+                    </ul>
+                    <a href="arctis-nova-pro.html" class="btn feature-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>TechLab</h3>
+                <p>Innovazione Tecnologica al tuo servizio. Recensioni oneste e guide approfondite sul mondo tech.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Link Veloci</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="prodotti.html">Prodotti</a></li>
+                    <li><a href="accessori-premium.html">Accessori Premium</a></li>
+                    <li><a href="recensioni.html">Recensioni</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Supporto</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Spedizioni</a></li>
+                    <li><a href="#">Resi</a></li>
+                    <li><a href="#">Guida all'acquisto</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" id="contatti">
+                <h3>Contatti</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Via Roma 123, Milano</li>
+                    <li><i class="fas fa-phone"></i> +39 02 1234567</li>
+                    <li><i class="fas fa-envelope"></i> info@techlab.it</li>
+                    <li><i class="fas fa-clock"></i> Lun-Ven: 9:00-18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 TechLab. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+</body>
+</html>
